@@ -1,0 +1,76 @@
+ext {
+    //app的版本相关
+    android = [
+            compileSdkVersion: 30,      //sdk版本号
+            minSdkVersion    : 20,      //app支持最小sdk版本号,安卓手机系统5.0以上才能安装app
+            targetSdkVersion : 30,      //app优先使用sdk版本号
+            versionCode      : 1,       //用户版本Code,每次更新在之前的基础上+1
+            versionName      : "1.0.0", //用户版本Name，每次更新在之前的基础上+0.0.1
+            applicationId    : "com.thesame.whz",  //app包名
+    ]
+    //app导入依赖对应版本号
+    dependVersion = [
+            /***基础依赖库版本号Start***/
+            core_ktx                 : '1.3.2',
+            kotlin_version           : '1.4.21',
+            material                 : '1.2.1',
+            androidx_constraintlayout: '2.0.4',
+            androidx_appcompat       : '1.2.0',
+            junit                    : '4.13.1',
+            ext                      : '1.1.2',
+            espresso                 : '3.3.0',
+            rxjava                   : '2.2.6',
+            rxandroid                : "2.1.1",
+            retrofit                 : '2.9.0',
+            httplog                  : '4.9.0',
+            gson                     : "2.8.6",
+            glide                    : '4.11.0',
+            adapter                  : "3.0.4",
+            autosize                 : '1.2.1',
+            uiwidget                 : '3.2.15',
+            smartrefreshlayout       : '1.0.5.1',
+            rxkotlin_version         : '2.3.0',
+            hawk                     : '2.0.1',
+
+
+
+    ]
+    //app导入依赖
+    dependencies = [
+            implementation           : [
+                    /****基础依赖库****/
+                    core_ktx                 : "androidx.core:core-ktx:${dependVersion.core_ktx}",//Kotlin 的扩展库
+                    kotlin_stdlib            : "org.jetbrains.kotlin:kotlin-stdlib:${dependVersion.kotlin_version}",//Kotlin基础库
+                    google_material          : "com.google.android.material:material:${dependVersion.material}",//谷歌风格UI依赖
+                    androidx_constraintlayout: "androidx.constraintlayout:constraintlayout:${dependVersion.androidx_constraintlayout}",//androidx约束布局基础依赖库
+                    androidx_appcompat       : "androidx.appcompat:appcompat:${dependVersion.androidx_appcompat}",//androidx基础依赖库
+                    rxjava                   : "io.reactivex.rxjava2:rxjava:${dependVersion.rxjava}",//rxrxjava通信库
+                    rxkotlin_version         : "io.reactivex.rxjava2:rxkotlin:${dependVersion.rxkotlin_version}",//rxrxjava通信库
+                    rxandroid                : "io.reactivex.rxjava2:rxandroid:${dependVersion.rxandroid}",//rxandroid通信库
+                    retrofit_api             : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",//网络请求核心库
+                    retrofit_gson            : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",//网络请求分支库Gson解析器
+                    retrofit_rxjava2         : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.retrofit}",//网络请求分支库Rxjava支持
+                    retrofit_scalars         : "com.squareup.retrofit2:converter-scalars:${dependVersion.retrofit}",//网络请求分支库字符串装箱支持
+                    retrofit_logging         : "com.squareup.okhttp3:logging-interceptor:${dependVersion.httplog}",//网络请求分支库字符串装箱支持
+                    gson                     : "com.google.code.gson:gson:${dependVersion.gson}",//json数据解析，Gson库
+                    glide                    : "com.github.bumptech.glide:glide:${dependVersion.glide}",//图片加载
+                    base_adapter             : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${dependVersion.adapter}",//适配器库
+                    autosize                 : "me.jessyan:autosize:${dependVersion.autosize}",//界面适配
+                    uiwidget                 : "com.github.AriesHoo.UIWidget:widget-core:${dependVersion.uiwidget}",//ui
+                    smartrefreshlayout       : "com.scwang.smartrefresh:SmartRefreshLayout:${dependVersion.smartrefreshlayout}",//下拉
+                    hawk                     : "com.orhanobut:hawk:${dependVersion.hawk}",//数据存储
+
+            ],
+            testImplementation       : [
+                    junit: "junit:junit:${dependVersion.junit}",//测试板块组件之一,核心testImplementation,
+
+            ],
+            androidTestImplementation: [
+                    test_ext     : "androidx.test.ext:junit:${dependVersion.ext}",//测试板块组件之一，组件一androidTestImplementation
+                    test_espresso: "androidx.test.espresso:espresso-core:${dependVersion.espresso}",//测试板块组件之一，组件二androidTestImplementation
+            ],
+            annotationProcessor      : [
+                    glide_compiler: "com.github.bumptech.glide:compiler:${dependVersion.glide}",//图片加载框架辅助工具
+            ],
+    ]
+}
