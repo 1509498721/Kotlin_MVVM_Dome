@@ -1,3 +1,10 @@
+package com.thesame.baselibrary.common
+
+import InitActivityManagerTask
+import InitAutoTask
+import InitFastManageTask
+import InitHawkTask
+import InitLogTask
 import android.app.Application
 import android.content.Context
 import com.thesame.baselibrary.utlis.launchstarter.TaskDispatcher
@@ -18,6 +25,7 @@ class BaseApplication : Application() {
         context = this
         myApplication = this
         initTask()
+
     }
 
     private fun initTask() {
@@ -27,7 +35,8 @@ class BaseApplication : Application() {
             .addTask(InitHawkTask())//初始化数据存储
             .addTask(InitFastManageTask())//初始化自定义弹框和图片加载器
             .addTask(InitLogTask())//初始化自定义日志
-            .addTask(InitAutoTask())//全局化适配
+            .addTask(InitAutoTask())//初始化适配
+            .addTask(InitActivityManagerTask())//初始化activity栈
             .start()
         taskDispatcher.await()
     }

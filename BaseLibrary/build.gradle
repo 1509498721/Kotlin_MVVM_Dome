@@ -1,18 +1,19 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
 
@@ -20,7 +21,6 @@ android {
         release {
             minifyEnabled true   //开启混淆
             zipAlignEnabled true  //压缩优化
-            shrinkResources true  //移出无用资源
             buildConfigField("boolean", "LOG_ENABLE", "false")//控制日志是否打印
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
@@ -28,7 +28,6 @@ android {
         debug {
             minifyEnabled false   //开启混淆
             zipAlignEnabled false  //压缩优化
-            shrinkResources false  //移出无用资源
             buildConfigField("boolean", "LOG_ENABLE", "true")//控制日志是否打印
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
@@ -44,23 +43,41 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     //依赖库配置变量
-    def libsImplementation = rootProject.ext.dependencies.implementation
-    def libsTestImplementation = rootProject.ext.dependencies.testImplementation
-    def libsAndroidTestImplementation = rootProject.ext.dependencies.androidTestImplementation
-    def libsAnnotationProcessor = rootProject.ext.dependencies.annotationProcessor
+    def libsImplementation = rootProject.ext.dependencies.implementation //依赖库配置
+    def libsTestImplementation = rootProject.ext.dependencies.testImplementation //依赖库配置
+    def libsAndroidTestImplementation = rootProject.ext.dependencies.androidTestImplementation //依赖库配置
+    def libsAnnotationProcessor = rootProject.ext.dependencies.annotationProcessor //依赖库配置变量
     //初始依赖库
-    implementation libsImplementation.kotlin_stdlib
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api libsImplementation.kt_activity
+    api libsImplementation.kt_fragment
+    implementation libsImplementation.coroutines_android
+    implementation libsImplementation.coroutines_kotlin
     implementation libsImplementation.core_ktx
-    implementation libsImplementation.androidx_appcompat
-    implementation libsImplementation.google_material
+
     implementation libsImplementation.androidx_constraintlayout
+    implementation libsImplementation.google_material
+    api libsImplementation.lifecycle_api
+    api libsImplementation.lifecycle_runtime
+    api libsImplementation.lifecycle_livedata
+    api libsImplementation.lifecycle_common
+    //implementation libsImplementation.bottom_navigation_bar 底部导航栏
     testImplementation libsTestImplementation.junit
     androidTestImplementation libsAndroidTestImplementation.test_ext
     androidTestImplementation libsAndroidTestImplementation.test_espresso
+    implementation libsImplementation.kotlin_stdlib
 
-    implementation libsImplementation.uiwidget
+
+
+
+    api libsImplementation.uiwidget
 
     implementation libsImplementation.smartrefreshlayout
 
@@ -78,4 +95,11 @@ dependencies {
     implementation libsImplementation.base_adapter
 
     implementation libsImplementation.hawk
+
+
+
+    api libsImplementation.retrofit_gson
+    api libsImplementation.retrofit_rxjava2
+    api libsImplementation.retrofit_scalars
+    api libsImplementation.retrofit_logging
 }

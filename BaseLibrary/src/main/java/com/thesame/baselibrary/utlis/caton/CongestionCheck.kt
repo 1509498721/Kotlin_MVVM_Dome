@@ -6,7 +6,7 @@ import android.os.Debug
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
-import com.caspar.base.helper.LogUtil
+import com.thesame.baselibrary.utlis.helper.LogUtil
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

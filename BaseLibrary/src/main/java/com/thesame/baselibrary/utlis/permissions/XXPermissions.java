@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.caspar.base.utils.permissions.OnPermission;
+import com.caspar.base.utils.permissions.PermissionSettingPage;
 
 import org.jetbrains.annotations.NotNull;
 

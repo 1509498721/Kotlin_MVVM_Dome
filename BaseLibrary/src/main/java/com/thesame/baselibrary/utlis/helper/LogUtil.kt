@@ -1,5 +1,4 @@
-package com.caspar.base.helper
-
+package com.thesame.baselibrary.utlis.helper
 import android.text.TextUtils
 import android.util.Log
 import org.json.JSONArray
@@ -54,7 +53,7 @@ object LogUtil {
      */
     fun init(debug: Boolean, Tag: String) {
         LogUtil.debug = debug
-        LogUtil.mTag = Tag
+        mTag = Tag
     }
 
     /**

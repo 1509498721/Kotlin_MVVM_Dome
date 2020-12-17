@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 
+import com.caspar.base.utils.permissions.ManifestRegisterException;
 import com.caspar.base.utils.permissions.Permission;
 
 import java.util.ArrayList;

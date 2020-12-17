@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true   //开启混淆
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
+            buildConfigField("boolean", "LOG_ENABLE", "false")//控制日志是否打印
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            minifyEnabled false   //开启混淆
+            zipAlignEnabled false  //压缩优化
+            shrinkResources false  //移出无用资源
+            buildConfigField("boolean", "LOG_ENABLE", "true")//控制日志是否打印
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+    compileOptions {
+        //使用JAVA8语法解析
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures{
+        //开启自动生成viewBinding
+        viewBinding = true
+    }
+    kotlinOptions {
+        //kotlin的java8支持
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    //apk输出格式
+    applicationVariants.all {
+        variant ->
+            // Apk 输出配置
+            variant.outputs.all { output ->
+                if (variant.buildType.name == buildTypes.debug.getName()) {
+                    outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + variant.buildType.name + '.apk'
+                } else {
+                    outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + new Date().format("yyyyMMdd") + '_' + variant.buildType.name + '.apk'
+                }
+            }
+    }
+}
+
+dependencies {
+
+    //依赖库配置变量
+    def libsImplementation = rootProject.ext.dependencies.implementation
+    def libsTestImplementation = rootProject.ext.dependencies.testImplementation
+    def libsAndroidTestImplementation = rootProject.ext.dependencies.androidTestImplementation
+    def libsAnnotationProcessor = rootProject.ext.dependencies.annotationProcessor
+    //初始依赖库
+    implementation libsImplementation.legacy
+    implementation libsImplementation.androidx_appcompat
+    implementation libsImplementation.google_material
+    implementation libsImplementation.androidx_constraintlayout
+    testImplementation libsTestImplementation.junit
+    androidTestImplementation libsAndroidTestImplementation.test_ext
+    androidTestImplementation libsAndroidTestImplementation.test_espresso
+    implementation libsImplementation.core_ktx
+    implementation libsImplementation.kotlin_stdlib
+    implementation project(':BaseLibrary')
+}
+repositories {
+    mavenCentral()
+}

@@ -82,6 +82,14 @@ public class ToastUtil {
     public static void show(CharSequence content) {
         show(content, sIsShowRunningForeground);
     }
+    /**
+     * 显示一个对象的吐司
+     *
+     * @param object      对象
+     */
+    public static void show(Object object) {
+        show(object != null ? object.toString() : "null");
+    }
 
     public static void show(CharSequence content, boolean isShowRunningForeground) {
         show(content, isShowRunningForeground, getBuilder());

@@ -1,4 +1,4 @@
-package com.caspar.base.helper
+package com.thesame.baselibrary.utlis.helper
 
 import android.app.Activity
 import android.app.Application
@@ -24,7 +24,7 @@ object ActivityStackManager : Application.ActivityLifecycleCallbacks {
     private var mCurrentTag: String? = null
 
     fun init(application: Application) {
-        this.application = application
+        ActivityStackManager.application = application
         application.registerActivityLifecycleCallbacks(this)
     }
 

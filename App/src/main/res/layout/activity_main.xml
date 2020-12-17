@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mainColor"
+    android:clipChildren="false"
+    tools:context=".MainActivity">
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"/>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbHome"
+            style="@style/main_activity_tab_style"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_main_activity_tab_home"
+            android:text="主页"/>
+
+        <RadioButton
+            android:id="@+id/rbExploration"
+            style="@style/main_activity_tab_style"
+            android:drawableTop="@drawable/selector_main_activity_tab_exploration"
+            android:text="发现"/>
+        <RadioButton
+            android:id="@+id/rbPurchasing"
+            style="@style/main_activity_tab_style"
+            android:layout_height="@dimen/dp_63"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:checked="false"
+            android:drawableTop="@drawable/selector_main_activity_tab_message"
+            android:text="添加"/>
+
+        <RadioButton
+            android:id="@+id/rbCart"
+            style="@style/main_activity_tab_style"
+            android:checked="false"
+            android:drawableTop="@drawable/selector_main_activity_tab_cart"
+            android:text="购物车"/>
+
+        <RadioButton
+            android:id="@+id/rbStandingList"
+            style="@style/main_activity_tab_style"
+            android:checked="false"
+            android:drawableTop="@drawable/selector_main_activity_tab_menulist"
+            android:text="灰机"/>
+    </RadioGroup>
+</LinearLayout>

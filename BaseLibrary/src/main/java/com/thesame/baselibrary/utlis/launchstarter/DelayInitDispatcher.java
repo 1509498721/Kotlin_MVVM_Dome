@@ -3,8 +3,8 @@ package com.thesame.baselibrary.utlis.launchstarter;
 import android.os.Looper;
 import android.os.MessageQueue;
 
-import com.whz.base.utils.launchstarter.task.DispatchRunnable;
-import com.whz.base.utils.launchstarter.task.Task;
+import com.thesame.baselibrary.utlis.launchstarter.task.DispatchRunnable;
+import com.thesame.baselibrary.utlis.launchstarter.task.Task;
 
 import java.util.LinkedList;
 import java.util.Queue;
